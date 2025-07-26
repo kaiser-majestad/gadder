@@ -1,17 +1,18 @@
-const express = require('express');
+// routes/lesiones.routes.js
+const express = require("express");
 const router = express.Router();
-const LesionController = require('../controllers/LesionController');
+const lesionesController = require("../controllers/lesiones.controller");
 
-// Crear una nueva lesión
-router.post('/api/lesiones', LesionController.crearLesion);
+// Crear una lesión (POST)
+router.post("/", lesionesController.create);
 
-// Obtener lesiones de un deportista
-router.get('/api/lesiones/deportista/:deportistaId', LesionController.obtenerLesionesDeportista);
+// Obtener todas las lesiones de un deportista (GET)
+router.get("/deportista/:id", lesionesController.getByDeportista);
 
-// Actualizar una lesión
-router.put('/api/lesiones/:id', LesionController.actualizarLesion);
+// Obtener una sola lesión por ID (GET)
+router.get("/:id", lesionesController.getById);
 
-// Eliminar una lesión
-router.delete('/api/lesiones/:id', LesionController.eliminarLesion);
+// Eliminar una lesión por ID (DELETE)
+router.delete("/:id", lesionesController.delete);
 
 module.exports = router;

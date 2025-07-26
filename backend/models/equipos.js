@@ -7,5 +7,15 @@ module.exports = (sequelize, DataTypes) => {
     Equipacion: DataTypes.STRING(100),
     Entrenador: DataTypes.STRING(100),
   });
+
+  Equipo.associate = (models) => {
+    Equipo.belongsToMany(models.Informe, {
+      through: 'Informe_Equipos',
+      foreignKey: 'ID_Equipo',
+      otherKey: 'ID_Informe',
+      as: 'Informes'
+    });
+  };
+
   return Equipo;
 };
